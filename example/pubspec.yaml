@@ -37,7 +37,7 @@ dependencies:
   #     url: https://github.com/GanZhiXiong/gzx_dropdown_menu.git
 
   # 方式3：通过本地路径
-  gzx_dropdown_menu:
+  gzx_dropdown_menu_more_custom:
     path: ../
 
 dev_dependencies:

@@ -6,7 +6,6 @@ import 'gzx_dropdown_menu_controller.dart';
 class GZXDropdownMenuBuilder {
   /// A dropdown menu displays the widget.
   final Widget dropDownWidget;
-
   /// Dropdown menu height.
   final double dropDownHeight;
 
@@ -31,13 +30,15 @@ class GZXDropDownMenu extends StatefulWidget {
   /// Called when dropdown menu has been shown or hidden.
   final DropdownMenuChange? dropdownMenuChanged;
 
+  double bottomRadis ;
   /// Creates a dropdown menu widget.
   /// The widget must be inside the Stack because the widget is a Positioned.
-  const GZXDropDownMenu({
+   GZXDropDownMenu({
     Key? key,
     required this.controller,
     required this.menus,
     this.animationMilliseconds = 500,
+    this.bottomRadis = 6.0,
     this.maskColor = const Color.fromRGBO(0, 0, 0, 0.5),
     this.dropdownMenuChanging,
     this.dropdownMenuChanged,
@@ -195,15 +196,36 @@ class _GZXDropDownMenuState extends State<GZXDropDownMenu>
         top: widget.controller.dropDownMenuTop,
         left: 0,
         right: 0,
-        child: Column(
-          children: <Widget>[
-            Container(
-              color: Colors.white,
-              width: double.infinity,
-              height: _animation == null ? 0 : _animation!.value,
-              child: widget.menus[menuIndex].dropDownWidget,
-            ),
+        child: Stack(
+          children: [
             _mask(),
+            Column(
+              children: <Widget>[
+                Container(
+                  //color: Colors.transparent,
+                  width: double.infinity,
+                  //transform: Matrix4.translationValues(0, 5, -2),
+                  //decoration: widget.menus[menuIndex].decoration,
+                  //clipBehavior:  Clip.antiAliasWithSaveLayer,
+                  height: _animation == null ? 0 : _animation!.value,
+                  child: Card(
+                    elevation: 0,
+                    shadowColor: Colors.transparent,
+                    margin: EdgeInsets.zero,
+                    //color: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      // <-- SEE HERE
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(widget.bottomRadis),
+                      ),
+                    ),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: widget.menus[menuIndex].dropDownWidget,
+                  ),
+                ),
+
+              ],
+            )
           ],
         ));
   }

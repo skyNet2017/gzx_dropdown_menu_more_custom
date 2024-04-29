@@ -1,4 +1,4 @@
-name: gzx_dropdown_menu
+name: gzx_dropdown_menu_more_custom
 description: A custom is strong dropdown menu for Flutter. Easy to use and powerful for customization, it's up to you what you want to display in the dropdown menu!
 version: 3.1.1
 homepage: https://github.com/GanZhiXiong/gzx_dropdown_menu
@@ -19,6 +19,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/images/
 
   # To add assets to your package, add an assets section, like this:
   # assets:

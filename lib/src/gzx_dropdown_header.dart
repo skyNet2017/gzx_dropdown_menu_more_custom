@@ -171,7 +171,13 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
                           : widget.style.merge(item.style),
                     ),
                   ),
-                  Icon(
+                  buildIconNew(item,
+                      _isShowDropDownItemWidget,
+                      item.iconSize ?? widget.iconSize,
+                      _isShowDropDownItemWidget
+                          ? _iconDropDownColor
+                          : item.style?.color ?? widget.iconColor)
+                      ??Icon(
                     !_isShowDropDownItemWidget
                         ? item.iconData ?? Icons.arrow_drop_down
                         : item.iconDropDownData ??
@@ -200,12 +206,37 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
       ),
     );
   }
+
+ Widget? buildIconNew(GZXDropDownHeaderItem item,
+     bool? isShowDropDownItemWidget,
+     double size,
+     Color? color) {
+    if(item.icon==null || item.iconDropDown ==null){
+      return null;
+    }
+    ImageProvider widget = item.icon!;
+    if(isShowDropDownItemWidget==true){
+      widget =  item.iconDropDown!;
+    }
+   return ImageIcon(
+     widget,
+      size: size, // 设置图标的大小
+      color: color, // 设置图标的颜色
+    );
+
+  }
 }
 
 class GZXDropDownHeaderItem {
   final String title;
-  final IconData? iconData;
-  final IconData? iconDropDownData;
+  @deprecated
+   IconData? iconData;
+  @deprecated
+   IconData? iconDropDownData;
+
+  ImageProvider? icon;
+  ImageProvider? iconDropDown;
+
   final double? iconSize;
   final TextStyle? style;
 
@@ -215,5 +246,8 @@ class GZXDropDownHeaderItem {
     this.iconDropDownData,
     this.iconSize,
     this.style,
+
+        this.icon = const  AssetImage("assets/images/ic_triangle_close.png",package:"gzx_dropdown_menu_more_custom"),
+        this.iconDropDown = const AssetImage("assets/images/ic_triangle_more.png",package:"gzx_dropdown_menu_more_custom")
   });
 }

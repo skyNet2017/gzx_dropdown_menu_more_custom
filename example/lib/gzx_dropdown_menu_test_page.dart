@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gzx_dropdown_menu/gzx_dropdown_menu.dart';
+import 'package:gzx_dropdown_menu_more_custom/gzx_dropdown_menu.dart';
 
 class SortCondition {
   String name;
@@ -189,7 +189,7 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
             // controller用于控制menu的显示或隐藏
             controller: _dropdownMenuController,
             // 下拉菜单显示或隐藏动画时长
-            animationMilliseconds: 300,
+            animationMilliseconds: 0,
             // 下拉后遮罩颜色
 //          maskColor: Theme.of(context).primaryColor.withOpacity(0.5),
 //          maskColor: Colors.red.withOpacity(0.5),
