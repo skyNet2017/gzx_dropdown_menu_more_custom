@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gzx_dropdown_menu_more_custom/gzx_dropdown_menu.dart';
+import 'package:styled_widget/styled_widget.dart';
+
+import 'custom_demo/custom_demo_view.dart';
 
 class SortCondition {
   String name;
@@ -72,6 +76,9 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
           brightness: Brightness.dark,
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 0,
+          actions: [
+            Center(child: Text("customPage"),)
+          ],
         ),
         preferredSize: Size.fromHeight(0),
       ),
@@ -101,13 +108,15 @@ class _GZXDropDownMenuTestPageState extends State<GZXDropDownMenuTestPage> {
                 color: Theme.of(context).primaryColor,
                 alignment: Alignment.center,
                 child: Text(
-                  '仿美团电影下拉筛选菜单$_dropdownMenuChange',
+                  '(点击跳新页面)仿美团下拉筛选菜单$_dropdownMenuChange',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
-                ),
+                ).gestures(onTap: (){
+                  Get.dialog(CustomDemoPage());
+                }),
               ),
 //              SizedBox(height: 20,),
               // 下拉菜单头部
