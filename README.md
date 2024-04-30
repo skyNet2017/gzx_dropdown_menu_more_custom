@@ -1,12 +1,6 @@
-# gzx_dropdown_menu
+# gzx_dropdown_menu_more_custom
 
-[![Pub Package](https://img.shields.io/pub/v/gzx_dropdown_menu.svg)](https://pub.dev/packages/gzx_dropdown_menu)
-[![GitHub Stars](https://img.shields.io/github/stars/ganzhixiong/gzx_dropdown_menu.svg)](https://github.com/ganzhixiong/gzx_dropdown_menu/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/ganzhixiong/gzx_dropdown_menu.svg)](https://github.com/ganzhixiong/gzx_dropdown_menu/network)
-[![GitHub Issues](https://img.shields.io/github/issues/ganzhixiong/gzx_dropdown_menu.svg)](https://github.com/ganzhixiong/gzx_dropdown_menu/issues)
-[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ganzhixiong/gzx_dropdown_menu/master/LICENSE)
-
-这是一个Flutter自定义功能强大的轻量级**下拉筛选菜单**Package，它支持iOS和Android。
+这是一个Flutter自定义功能强大的轻量级**下拉筛选菜单**Package
 
 ***
 - 🙀开源不易，麻烦给个Star⭐️吧！我会根据大家的关注度和个人时间持续更新代码！
@@ -33,6 +27,33 @@ A custom is strong dropdown menu for Flutter. Easy to use and powerful for custo
 
 **<u>[查看版本更新记录](https://pub.flutter-io.cn/packages/gzx_dropdown_menu#-changelog-tab-)</u>**
 
+
+
+# 内置基本样式
+
+```dart
+  Widget buildBody(BuildContext context) {
+    return DropDrownSelectorComponent(tag: 'xxx',
+      dropdownMenuBuilders: (GZXDropdownMenuController dropdownMenuController,
+          dynamic Function(int, String) onHeaderChanged) {
+
+      return [
+        GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,0), dropDownHeight: 200),
+        GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,1), dropDownHeight: 100),
+        GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,2), dropDownHeight: 300),
+      ];
+    }, dropDownHeaders: [
+      "浏览器",
+        "ai",
+        "年纪"
+      ], body: Center(
+          child: Text(state.currentChoosed),
+        ),);
+  }
+```
+
+
+
 # 待办事项
 - [ ] 由于GZXDropDownMenu只能在Stack内使用，扩展性还不够强
 - [ ] 支持CustomScrollView和NestedScrollView
@@ -43,10 +64,7 @@ A custom is strong dropdown menu for Flutter. Easy to use and powerful for custo
 - 美团的代码就在这个仓库的example目录下
 - 淘宝的代码在[Flutter 淘宝](https://github.com/GanZhiXiong/GZXTaoBaoAppFlutter)
 
-<!---
-这样写pub上Readme图片不能显示
-<img src="https://github.com/GanZhiXiong/gzx_dropdown_menu/blob/master/preview_images/美团.gif" width="439" height="860" align=center /><img src="https://github.com/GanZhiXiong/gzx_dropdown_menu/blob/master/preview_images/淘宝.gif" width="439" height="860" align=center />
---->
+
 
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/GanZhiXiong/gzx_dropdown_menu/blob/master/preview_images/美团.gif"><img src="https://github.com/GanZhiXiong/gzx_dropdown_menu/raw/master/preview_images/美团.gif" width="439" height="860" align="center" style="max-width:100%;"></a><a target="_blank" rel="noopener noreferrer" href="https://github.com/GanZhiXiong/gzx_dropdown_menu/blob/master/preview_images/淘宝.gif"><img src="https://github.com/GanZhiXiong/gzx_dropdown_menu/raw/master/preview_images/淘宝.gif" width="439" height="860" align="center" style="max-width:100%;"></a>
 

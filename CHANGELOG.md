@@ -1,3 +1,6 @@
+## [3.1.1] - [2024-04-30]
+增加内置样式
+
 ## [3.1.0] - [2021-04-07]
 ### ✨ New Features
 * Add iconDropDownData to customize icon when menu is show
