@@ -1,16 +1,14 @@
 import 'dart:ui';
 
-
 import 'package:get/get.dart';
-
-
 
 import '../../gzx_dropdown_menu.dart';
 import 'drop_drown_selector_state.dart';
 
 class DropDrownSelectorLogic extends GetxController {
   final DropDrownSelectorState state = DropDrownSelectorState();
-  GZXDropdownMenuController dropdownMenuController = GZXDropdownMenuController();
+  GZXDropdownMenuController dropdownMenuController =
+      GZXDropdownMenuController();
 
   @override
   void onReady() {
@@ -34,7 +32,6 @@ class DropDrownSelectorLogic extends GetxController {
     onRoleChanged?.call(i);
   }*/
 
-
 /*  void onDateClear() {
     state.dropDownHeaderItemStrings[1] = SaTaskStr.creationTime.tr;
     state.selectedDateTime = DateTime.now();
@@ -43,7 +40,6 @@ class DropDrownSelectorLogic extends GetxController {
     dropdownMenuController.hide();
 
   }*/
-
 
   void onheaderChanged(int index, String value) {
     state.dropDownHeaderItemStrings[index] = value;

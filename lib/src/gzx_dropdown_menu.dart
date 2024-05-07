@@ -6,6 +6,7 @@ import 'gzx_dropdown_menu_controller.dart';
 class GZXDropdownMenuBuilder {
   /// A dropdown menu displays the widget.
   final Widget dropDownWidget;
+
   /// Dropdown menu height.
   final double dropDownHeight;
 
@@ -30,10 +31,11 @@ class GZXDropDownMenu extends StatefulWidget {
   /// Called when dropdown menu has been shown or hidden.
   final DropdownMenuChange? dropdownMenuChanged;
 
-  double bottomRadis ;
+  double bottomRadis;
+
   /// Creates a dropdown menu widget.
   /// The widget must be inside the Stack because the widget is a Positioned.
-   GZXDropDownMenu({
+  GZXDropDownMenu({
     Key? key,
     required this.controller,
     required this.menus,
@@ -223,7 +225,6 @@ class _GZXDropDownMenuState extends State<GZXDropDownMenu>
                     child: widget.menus[menuIndex].dropDownWidget,
                   ),
                 ),
-
               ],
             )
           ],

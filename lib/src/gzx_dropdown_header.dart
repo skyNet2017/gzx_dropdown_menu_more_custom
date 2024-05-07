@@ -25,12 +25,15 @@ class GZXDropDownHeader extends StatefulWidget {
   final List<GZXDropDownHeaderItem> items;
   final GlobalKey stackKey;
 
+  bool headerOnLeftWhenJustOne;
+
   /// Creates a dropdown header widget, Contains more than one header items.
   GZXDropDownHeader({
     Key? key,
     required this.items,
     required this.controller,
     required this.stackKey,
+    this.headerOnLeftWhenJustOne = false,
     this.style = const TextStyle(color: Color(0xFF666666), fontSize: 13),
     this.dropDownStyle,
     this.height = 40,
@@ -85,14 +88,18 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
     _screenWidth = mediaQuery.size.width;
     _menuCount = widget.items.length;
 
-    var gridView = GridView.count(
-      physics: NeverScrollableScrollPhysics(),
-      crossAxisCount: _menuCount,
-      childAspectRatio: (_screenWidth / _menuCount) / widget.height,
-      children: widget.items.map<Widget>((item) {
-        return _menu(item);
-      }).toList(),
-    );
+    var gridView;
+    /*if(_menuCount ==1 && widget.headerOnLeftWhenJustOne){
+      gridView = _menu(widget.items[0]);
+    }else{*/
+    gridView = GridView.count(
+        physics: NeverScrollableScrollPhysics(),
+        crossAxisCount: _menuCount,
+        childAspectRatio: (_screenWidth / _menuCount) / widget.height,
+        children: widget.items.map<Widget>((item) {
+          return _menu(item);
+        }).toList());
+    //}
 
     return Container(
       key: _keyDropDownHeader,
@@ -116,6 +123,10 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
     int index = widget.items.indexOf(item);
     int menuIndex = widget.controller.menuIndex;
     _isShowDropDownItemWidget = index == menuIndex && widget.controller.isShow;
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.center;
+    if (_menuCount == 1 && widget.headerOnLeftWhenJustOne) {
+      mainAxisAlignment = MainAxisAlignment.start;
+    }
 
     return GestureDetector(
       onTap: () {
@@ -155,11 +166,11 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
       child: Container(
         color: widget.color,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: mainAxisAlignment,
           children: <Widget>[
             Expanded(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: mainAxisAlignment,
                 children: <Widget>[
                   Flexible(
                     child: Text(
@@ -171,23 +182,24 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
                           : widget.style.merge(item.style),
                     ),
                   ),
-                  buildIconNew(item,
-                      _isShowDropDownItemWidget,
-                      item.iconSize ?? widget.iconSize,
-                      _isShowDropDownItemWidget
-                          ? _iconDropDownColor
-                          : item.style?.color ?? widget.iconColor)
-                      ??Icon(
-                    !_isShowDropDownItemWidget
-                        ? item.iconData ?? Icons.arrow_drop_down
-                        : item.iconDropDownData ??
-                            item.iconData ??
-                            Icons.arrow_drop_up,
-                    color: _isShowDropDownItemWidget
-                        ? _iconDropDownColor
-                        : item.style?.color ?? widget.iconColor,
-                    size: item.iconSize ?? widget.iconSize,
-                  ),
+                  buildIconNew(
+                          item,
+                          _isShowDropDownItemWidget,
+                          item.iconSize ?? widget.iconSize,
+                          _isShowDropDownItemWidget
+                              ? _iconDropDownColor
+                              : item.style?.color ?? widget.iconColor) ??
+                      Icon(
+                        !_isShowDropDownItemWidget
+                            ? item.iconData ?? Icons.arrow_drop_down
+                            : item.iconDropDownData ??
+                                item.iconData ??
+                                Icons.arrow_drop_up,
+                        color: _isShowDropDownItemWidget
+                            ? _iconDropDownColor
+                            : item.style?.color ?? widget.iconColor,
+                        size: item.iconSize ?? widget.iconSize,
+                      ),
                 ],
               ),
             ),
@@ -207,32 +219,29 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
     );
   }
 
- Widget? buildIconNew(GZXDropDownHeaderItem item,
-     bool? isShowDropDownItemWidget,
-     double size,
-     Color? color) {
-    if(item.icon==null || item.iconDropDown ==null){
+  Widget? buildIconNew(GZXDropDownHeaderItem item,
+      bool? isShowDropDownItemWidget, double size, Color? color) {
+    if (item.icon == null || item.iconDropDown == null) {
       return null;
     }
     ImageProvider widget = item.icon!;
-    if(isShowDropDownItemWidget==true){
-      widget =  item.iconDropDown!;
+    if (isShowDropDownItemWidget == true) {
+      widget = item.iconDropDown!;
     }
-   return ImageIcon(
-     widget,
+    return ImageIcon(
+      widget,
       size: size, // 设置图标的大小
       color: color, // 设置图标的颜色
     );
-
   }
 }
 
 class GZXDropDownHeaderItem {
   final String title;
   @deprecated
-   IconData? iconData;
+  IconData? iconData;
   @deprecated
-   IconData? iconDropDownData;
+  IconData? iconDropDownData;
 
   ImageProvider? icon;
   ImageProvider? iconDropDown;
@@ -240,14 +249,13 @@ class GZXDropDownHeaderItem {
   final double? iconSize;
   final TextStyle? style;
 
-  GZXDropDownHeaderItem(
-    this.title, {
-    this.iconData,
-    this.iconDropDownData,
-    this.iconSize,
-    this.style,
-
-        this.icon = const  AssetImage("assets/images/ic_triangle_close.png",package:"gzx_dropdown_menu_more_custom"),
-        this.iconDropDown = const AssetImage("assets/images/ic_triangle_more.png",package:"gzx_dropdown_menu_more_custom")
-  });
+  GZXDropDownHeaderItem(this.title,
+      {this.iconData,
+      this.iconDropDownData,
+      this.iconSize,
+      this.style,
+      this.icon = const AssetImage("assets/images/ic_triangle_close.png",
+          package: "gzx_dropdown_menu_more_custom"),
+      this.iconDropDown = const AssetImage("assets/images/ic_triangle_more.png",
+          package: "gzx_dropdown_menu_more_custom")});
 }

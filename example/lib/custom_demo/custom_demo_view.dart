@@ -24,18 +24,21 @@ class CustomDemoPage extends StatelessWidget {
 
   Widget buildBody(BuildContext context) {
     return DropDrownSelectorComponent(tag: 'xxx',
+      headerOnLeftWhenJustOne: false,
+      headerBackgroundColor: Colors.lightGreenAccent,
+      headerHeight: 50,
       dropdownMenuBuilders: (GZXDropdownMenuController dropdownMenuController,
           dynamic Function(int, String) onHeaderChanged) {
 
       return [
         GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,0), dropDownHeight: 200),
-        GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,1), dropDownHeight: 100),
-        GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,2), dropDownHeight: 300),
+        //GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,1), dropDownHeight: 100),
+       // GZXDropdownMenuBuilder(dropDownWidget: buildList1(dropdownMenuController,onHeaderChanged,2), dropDownHeight: 300),
       ];
     }, dropDownHeaders: [
       "浏览器",
-        "ai",
-        "年纪"
+       // "ai",
+       // "年纪"
       ], body: Center(
           child: Text(state.currentChoosed),
         ),);
