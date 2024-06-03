@@ -41,7 +41,7 @@ class CustomDemoPage extends StatelessWidget {
        // "年纪"
       ], body: Center(
           child: Text(state.currentChoosed),
-        ),);
+        ).expanded().backgroundColor(Colors.red),);
   }
 
   buildList1(GZXDropdownMenuController dropdownMenuController,

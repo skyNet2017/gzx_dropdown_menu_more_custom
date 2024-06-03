@@ -18,6 +18,7 @@ class DropDrownSelectorComponent extends StatelessWidget {
   late double headerHeight;
   bool headerOnLeftWhenJustOne;
   Color headerBackgroundColor;
+  bool hasDivider;
   late List<GZXDropdownMenuBuilder> Function(
           GZXDropdownMenuController dropdownMenuController,
           Function(int index, String newHeader) onHeaderChanged)
@@ -28,6 +29,7 @@ class DropDrownSelectorComponent extends StatelessWidget {
       {required this.dropdownMenuBuilders,
       required this.dropDownHeaders,
       required this.tag,
+        this.hasDivider = false,
       this.headerOnLeftWhenJustOne = true,
       this.headerHeight = 50.0,
       this.headerBackgroundColor = Colors.white,
@@ -49,10 +51,10 @@ class DropDrownSelectorComponent extends StatelessWidget {
               Column(
                 children: <Widget>[
 //              SizedBox(height: 20,),
-                  Container(
+                  hasDivider ? Container(
                     height: 0.5,
                     color: Color(0xFFE8E8E8),
-                  ),
+                  ): SizedBox(),
                   // 下拉菜单头部
                   GZXDropDownHeader(
                     // 下拉的头部项，目前每一项，只能自定义显示的文字、图标、图标大小修改
