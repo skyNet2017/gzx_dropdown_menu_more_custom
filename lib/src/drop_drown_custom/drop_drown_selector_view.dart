@@ -81,7 +81,9 @@ class DropDrownSelectorComponent extends StatelessWidget {
 //                     dividerHeight: 0.5,
                     // dividerHeight: 20,
 //                // 分割线颜色
+                 // dividerHeight: 10,
 
+                    //几个tab之间的分割线
                     dividerColor: headerBackgroundColor,
 //                // 文字样式
                     style: const TextStyle(
@@ -151,7 +153,7 @@ class DropDrownSelectorComponent extends StatelessWidget {
   buildHeaders(BuildContext context) {
     List<GZXDropDownHeaderItem> items = [];
     for (String str in state.dropDownHeaderItemStrings) {
-      items.add(GZXDropDownHeaderItem(str, iconSize: 23));
+      items.add(GZXDropDownHeaderItem(str, iconSize: 16));
     }
     return items;
   }
