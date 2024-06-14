@@ -19,6 +19,7 @@ class DropDrownSelectorComponent extends StatelessWidget {
   bool headerOnLeftWhenJustOne;
   Color headerBackgroundColor;
   bool hasDivider;
+  Function(bool isShow, int? index)? onDropDownMenuChanged;
   late List<GZXDropdownMenuBuilder> Function(
           GZXDropdownMenuController dropdownMenuController,
           Function(int index, String newHeader) onHeaderChanged)
@@ -29,6 +30,7 @@ class DropDrownSelectorComponent extends StatelessWidget {
       {required this.dropdownMenuBuilders,
       required this.dropDownHeaders,
       required this.tag,
+        this.onDropDownMenuChanged,
         this.hasDivider = false,
       this.headerOnLeftWhenJustOne = true,
       this.headerHeight = 50.0,
@@ -134,6 +136,7 @@ class DropDrownSelectorComponent extends StatelessWidget {
 //          maskColor: Colors.red.withOpacity(0.5),
 
                 dropdownMenuChanged: (isShow, index) {
+                  onDropDownMenuChanged?.call(isShow,index);
                   /*     setState(() {
                 _dropdownMenuChange = '(已经${isShow ? '显示' : '隐藏'}$index)';
                 print(_dropdownMenuChange);
