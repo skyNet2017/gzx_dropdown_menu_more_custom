@@ -171,6 +171,7 @@ class _GZXDropDownHeaderState extends State<GZXDropDownHeader>
             Expanded(
               child: Row(
                 mainAxisAlignment: mainAxisAlignment,
+                //crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Flexible(
                     child: Text(
